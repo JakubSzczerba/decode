@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div id="countdown" class="text-center"></div>
+    </div>
+    <br>
+    ticket ids:
+    {% for ticket in tickets %}
+        {{ ticket }}
+    {% endfor %}
+    <br><br>
+    {% for revenueAndProfit in revenueAndProfits %}
+        {{ revenueAndProfit.lottery_name }}, profit: {{ revenueAndProfit.profit }}, revenue: {{ revenueAndProfit.revenue }} <br>
+    {% endfor %}
+{% endblock %}

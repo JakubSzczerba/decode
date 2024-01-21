@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        {% block stylesheets %}
+            <style>
+                body {
+                    background-color: #f8f9fa;
+                }
+
+                #countdown {
+                    font-size: 3rem;
+                    font-weight: bold;
+                    color: #343a40;
+                    background-color: #ffffff;
+                    padding: 20px;
+                    border-radius: 10px;
+                    display: inline-block;
+                }
+            </style>
+        {% endblock %}
+
+        {% block javascripts %}
+            <script>
+                $(document).ready(function() {
+                    //date
+                    var lotteryDate = new Date('{{ lotteryDate|date("Y-m-d H:i:s") }}');
+
+                    setInterval(function() {
+                        var now = new Date();
+                        var timeLeft = lotteryDate - now;
+
+                        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                        if (days > 1) {
+                            $('#countdown').text(days + ' dni ' + hours + ' godzin ' + minutes + ' minut');
+                        } else {
+                            $('#countdown').text(hours + ' godzin ' + minutes + ' minut ' + seconds + ' sekund');
+                        }
+
+                    }, 1000);
+                });
+            </script>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>

@@ -9,6 +9,27 @@
 ```
 docker compose up -d
 ```
+```
+docker compose exec php bin/console doctrine:migrations:migrate
+```
+
+## Decoding & Encoding Message
+```
+docker compose exec php bin/console decode:message
+```
+```
+docker compose exec php bin/console encode:message
+```
+
+## Lcd
+```
+docker compose exec php bin/console display:number 05648139072
+```
+
+## Sql & Frontend
+```
+"http://decode.local:8099"
+```
 
 ## Contact
 * [GitHub](https://github.com/JakubSzczerba)
